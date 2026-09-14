@@ -4,9 +4,22 @@ Este repositório contém os códigos desenvolvidos no projeto: Sistema de Irrig
 # Diário do Projeto
 
 <details>
-    <summary> Dia 1 (05/08/2026) </summary>
+    <summary> 05/08/2026 </summary>
 
 - Abertura do Repositório     
 - Ainda sem programação: Foco total na leitura de artigos e na produção do artigo para a Fecivale.
+</details>
+
+
+<details>
+    <summary> 13/09/2026 </summary>
+
+- inserção de ambiente virtual para biblioteca
+- instalação do uv
+- instalação do FAST API 
+
+- Justificativa:
+    -  A aplicação do FAST API justifica-se pelo fato de que ele poderá permitir uma integração mais fácil ao microcontrolador da horte, sem haver necessidade de grandes alterações na programação do sistema ja pronto
+    - Será realizado uma integração com o Google Sheets da estação meteorologica através do Google AppScripts
 
 </details>
