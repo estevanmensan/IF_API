@@ -23,3 +23,17 @@ Este repositório contém os códigos desenvolvidos no projeto: Sistema de Irrig
     - Será realizado uma integração com o Google Sheets da estação meteorologica através do Google AppScripts
 
 </details>
+
+<details>
+    <summary> 15 e 16/09/2026 </summary>
+
+- criação de pasta 'calculo.py' para calcular a evapotranspiração
+- criação de pasta 'teste.py' como um ambiente para testes
+
+- Ideia para o protótipo da FECIVALE:
+    - Utlizar de API Meteorlógica pronta e aplicar as fórmulas da evapotranspiração
+    - Estudar agora qual metodologia abordar: Data base ou biblioteca Pandas?
+    
+- Pendencias:
+    - A definir projeto final (Utilizando-se de base meteorlógica própria)
+</details>
