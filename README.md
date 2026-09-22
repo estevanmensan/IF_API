@@ -53,3 +53,7 @@ Este repositório contém os códigos desenvolvidos no projeto: Sistema de Irrig
 - Pendencias:
     - A definir projeto final (Utilizando-se de base meteorlógica própria ou uma pronta)
 </details>
+
+  
+  
+# Aprendizados
