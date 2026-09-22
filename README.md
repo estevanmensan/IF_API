@@ -37,3 +37,19 @@ Este repositório contém os códigos desenvolvidos no projeto: Sistema de Irrig
 - Pendencias:
     - A definir projeto final (Utilizando-se de base meteorlógica própria)
 </details>
+
+<details>
+    <summary> 19 a 21/09/2026 </summary>
+
+- Atualização de pasta 'calculo.py' para calcular a evapotranspiração
+- Atualização de pasta 'teste.py' como um ambiente para testes
+- Criação de pasta 'data.py' para coletar os dados e organiza-los, permitindo o calculo
+
+- Ideia para o protótipo da FECIVALE:
+    - Utlizar de API Meteorlógica pronta e aplicar as fórmulas da evapotranspiração
+    - Estudar agora qual metodologia abordar: Banco SQL/NoSQL ou biblioteca Pandas?
+        - Definida: biblioteca Pandas
+    
+- Pendencias:
+    - A definir projeto final (Utilizando-se de base meteorlógica própria ou uma pronta)
+</details>

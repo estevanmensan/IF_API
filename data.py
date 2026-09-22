@@ -17,7 +17,7 @@ def obtemDados(past_days: int=2) -> dict:
     return resp.json()
 
 
-def dictDados(dados_brutos):
+def dictDados(dados_brutos) -> pd.DataFrame:
 
     #variavel para armazenar o dicionário das variáveis
     hourly = dados_brutos["hourly"]
@@ -46,5 +46,32 @@ def dictDados(dados_brutos):
                     valor válido pra frente
     """
     return meteoDF
+
+
+
+"""
+#função para agregar a série horária em valores diários, nas unidades da equação 
+#agrupar (por dia) e agregar (resumir cada grupo para uma única variavel)
+
+lambda serie: serie.mean()*3600*24/1_000_000) -> converete W/m² para MJ/m²/dia
+lambda = função anônima escrita em uma única linha
+seria.mean = calcula a radiação média em W/m²
+"""
+
+def agregar_diario(meteoDF: pd.DataFrame)->pd.DataFrame:  
+    meteoDF = meteoDF.copy() #cria cópia do dataframe, garantindo o dataframe original intacto
+    meteoDF["data"] = meteoDF["timestamp"].dt.date #coluna data descartando a hora do 'timestamp'
+
+
+    diario = meteoDF.groupby("data").agg(  #groupby = separa o dataframe em grupos; data vira o índice do DataFrame
+        temperatura = ("temperatura", "mean"),
+        umidade_rel = ("umidade_relativa", "mean"),
+        vento_2m = ("vento_2m", "mean"),
+        radiacao_mj = ("radiacao_wm2", lambda serie: serie.mean()*3600*24/1_000_000),
+    ).reset_index() #transforma o data em uma coluna comum
+
+    return diario
+
+
 dados_brutos = obtemDados()
 dictDados(dados_brutos)
