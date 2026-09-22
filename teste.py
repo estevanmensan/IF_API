@@ -1,4 +1,5 @@
 import requests
+import pandas as pd
 from calculo import converter_vento_2m,calcular_et0, calcular_etc, KC_POR_CULTURA
 
 """
@@ -12,7 +13,6 @@ params = {
     "latitude": -24.49, #latitude de Registro
     "longitude": -47.84, #longitude de Registro
     "hourly": "temperature_2m,relative_humidity_2m,wind_speed_10m,shortwave_radiation",
-    #"hourly": "temperature_2m,precipitation_probability",
     "timezone": "America/Sao_Paulo"
 }
 

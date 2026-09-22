@@ -7,6 +7,8 @@ Equação de Penman-Moneith "desmontada" para garantir
 
 # Equação para descobrir a velocidade do vento a 2m como exigido pela equação de Penman-Moneith
 def converter_vento_2m(vento_10):
+    if vento_10 is None:
+        return None
     return vento_10 * (4.87 / math.log(67.8 * 10 -5.42))
 
 def calcular_et0 (temp_media, temp_max, temp_min, 
