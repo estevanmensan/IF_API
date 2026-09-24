@@ -11,9 +11,9 @@ def converter_vento_2m(vento_10):
         return None
     return vento_10 * (4.87 / math.log(67.8 * 10 -5.42))
 
-def calcular_et0 (temp_media, temp_max, temp_min, 
+def calcular_et0 (temp_media,
                 umidade_relativa, velocidade_vento, radiacao_solar, altitude=0
-                ):
+            ):
 
     #es=Pressão de saturação de vapor (KPa)
     es = 0.6108 * math.exp((17.27*temp_media)/(temp_media+237.3))

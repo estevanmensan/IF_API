@@ -24,7 +24,7 @@ def dictDados(dados_brutos) -> pd.DataFrame:
 
     #dataframe para os dados
     meteoDF = pd.DataFrame ({
-        "timestamps": pd.to_datetime(hourly["time"]),
+        "timestamp": pd.to_datetime(hourly["time"]),
         "temperatura": hourly["temperature_2m"],
         "umidade_relativa": hourly["relative_humidity_2m"],
         "vento_10m": hourly["wind_speed_10m"],
@@ -73,5 +73,3 @@ def agregar_diario(meteoDF: pd.DataFrame)->pd.DataFrame:
     return diario
 
 
-dados_brutos = obtemDados()
-dictDados(dados_brutos)

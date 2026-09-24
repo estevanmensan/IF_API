@@ -54,6 +54,23 @@ Este repositório contém os códigos desenvolvidos no projeto: Sistema de Irrig
     - A definir projeto final (Utilizando-se de base meteorlógica própria ou uma pronta)
 </details>
 
+<details>
+    <summary> 24/09/2026 </summary>
+
+- Atualização de pasta 'data.py' (correção de erro de escrita)
+- Alterações na pasta 'pasta.py' (integração de 'calculo.py' e 'data.py')
+
+
+- Protótipo da FECIVALE:
+    - Bibliotecas
+        - Pandas (analise, limpeza, exploração e manipulação de dados)
+        - Requests (utilizado para coletar dados da API)
+    - 
+    
+- Pendencias:
+    - A definir projeto final (Utilizando-se de base meteorlógica própria ou uma pronta)
+</details>
+
   
   
 # Aprendizados
