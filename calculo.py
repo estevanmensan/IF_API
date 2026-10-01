@@ -11,10 +11,10 @@ def converter_vento_2m(vento_10):
         return None
     return vento_10 * (4.87 / math.log(67.8 * 10 -5.42))
 
-def calcular_et0 (temp_media,
-                umidade_relativa, velocidade_vento, radiacao_solar, altitude=0
-            ):
-
+def calcular_et0 (temp_media:float, umidade_relativa: float, 
+                  velocidade_vento:float, radiacao_solar:float, altitude=0
+            ) -> float:
+    #G (fluxo de calor no solo) é assumido como 0
     #es=Pressão de saturação de vapor (KPa)
     es = 0.6108 * math.exp((17.27*temp_media)/(temp_media+237.3))
 
@@ -28,7 +28,8 @@ def calcular_et0 (temp_media,
     delta = (4098*(es))/((temp_media+237.3)**2)
 
     #constante psicométrica
-    pressao_atm = 101.3 * ((293-0.0065*altitude)/293)**5.26
+    #pressao_atm = 101.3 * ((293-0.0065*altitude)/293)**5.26
+    pressao_atm = 101.3
     gamma = 0.665e-3*pressao_atm
 
     # calculando pela ET0
@@ -48,4 +49,4 @@ KC_POR_CULTURA = {
     "couve": 0.95
 }
 
-calcular_et0(0,0,0,0,0,0)
+#calcular_et0(0,0,0,0,0,0)

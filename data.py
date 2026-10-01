@@ -5,8 +5,8 @@ from calculo import converter_vento_2m
 def obtemDados(past_days: int=2) -> dict:
     url = "https://api.open-meteo.com/v1/forecast"
     params = {
-        "latitude": -24.49, #latitude de Registro
-        "longitude": -47.84, #longitude de Registro
+        "latitude": -24.4936, #latitude de Registro
+        "longitude": -47.8436, #longitude de Registro
         "hourly": "temperature_2m,relative_humidity_2m,wind_speed_10m,shortwave_radiation",
         "timezone": "America/Sao_Paulo",
         "past_days": past_days
