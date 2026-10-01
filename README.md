@@ -1,6 +1,9 @@
 # IF_API
 Este repositório contém os códigos desenvolvidos no projeto: Sistema de Irrigação do HortIf: Análise, Implantação e Monitoramento de uma Solução Automatizada para a Sustentabilidade Hídrica e Produtiva. Além disso, o README será utilizado como "Diário de Programação"
 
+### Resumo do Projeto
+Este projeto visa desenvolver um sistema automatizado de irrigação para a Horta Agroflorestal (HortIf) do IFSP-Campus Registro, visando a vulnerabilidade do manejo hídrico manual durante recessos e fins de semana, que compromete a produtividade das culturas devido ao estresse hídrico. A solução proposta integra tecnologias IoT com o método de Penman-Monteith (FAO) para o cálculo preciso da Evapotranspiração da Cultura (ET0), garantindo uma reposição hídrica eficiente através de uma API desenvolvida em Python que gerencia a comunicação entre sensores meteorológicos, o sistema de controle e um dashboard web responsivo para monitoramento em tempo real. Além de otimizar o uso de recursos, o projeto possui uma forte dimensão socioeducativa ao servir como laboratório pedagógico multidisciplinar, com previsão de conclusão para outubro de 2026, quando serão validados os dados quantitativos de consumo e a eficiência do sistema em garantir a saúde vegetal e a estabilidade produtiva do espaço agroflorestal.
+
 # Diário do Projeto
 
 <details>
@@ -76,6 +79,11 @@ Este repositório contém os códigos desenvolvidos no projeto: Sistema de Irrig
 
 - Atualizações na pasta.py (edições em 'calculo.py' e 'teste.py')
 - Correção de código em 'teste.py'
+    - Adição de openpyxl para criação de planilha excel
+    - Alteração para que o dados sejam registrados em planilhas
+- Variavel 'altitude' de volta a 'calculo.py' para calculo da variavel gamma
+    - Justificativa: rigor metodológico
+- Adicionado resumo do projeto ao 'README.md'
 
 
 
@@ -84,8 +92,11 @@ Este repositório contém os códigos desenvolvidos no projeto: Sistema de Irrig
         - Pandas (analise, limpeza, exploração e manipulação de dados)
         - Requests (utilizado para coletar dados da API)
         - Mathe (biblioteca para calculos matemáticos)
-    - 
+        - Openpyxl (integração pyhton e excel)
 
+- Pendencias:
+    - A definir projeto final (Utilizando-se de base meteorlógica própria ou uma pronta)
+    - [URGENTE] integração a dashboard
 </details>
 
   

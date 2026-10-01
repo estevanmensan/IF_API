@@ -1,4 +1,5 @@
 import requests
+import openpyxl
 import pandas as pd
 from calculo import converter_vento_2m,calcular_et0, calcular_etc, KC_POR_CULTURA
 from data import obtemDados, dictDados, agregar_diario
@@ -25,6 +26,7 @@ def main ():
             umidade_relativa=linha["umidade_rel"],
             velocidade_vento=linha["vento_2m"],
             radiacao_solar=linha["radiacao_mj"],
+            altitude=15 #fonte: https://registro.sp.gov.br/sobre-registro/dados-geograficos/
         )
         """
             calcular_et0 (temp_media,
@@ -50,8 +52,9 @@ def main ():
 
     #arquivo .csv
     df_resultado.to_csv("resultado_et_hortif.csv", index=False)
+    df_resultado.to_excel("resultado_et_hortif.xlsx", index=False)
     print("\nResultado salvo em resultado_et_hortif.csv")
-    
+    print("\nResultado salvo em resultado_et_hortif.xlsx")
     
 
 if __name__ == "__main__":
