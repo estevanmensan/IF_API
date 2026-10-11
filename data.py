@@ -2,18 +2,19 @@ import pandas as pd
 import requests
 from calculo import converter_vento_2m
 
-def obtemDados(past_days: int=2) -> dict:
+def obtemDados(past_days: int=7) -> dict:
     url = "https://api.open-meteo.com/v1/forecast"
     params = {
         "latitude": -24.4936, #latitude de Registro
         "longitude": -47.8436, #longitude de Registro
         "hourly": "temperature_2m,relative_humidity_2m,wind_speed_10m,shortwave_radiation",
         "timezone": "America/Sao_Paulo",
-        "past_days": past_days
+        "past_days": past_days,
+        "forescast_days":1,
     }
     resp = requests.get(url, params=params, timeout=15)
     resp.raise_for_status()
-
+    print(url)
     return resp.json()
 
 
@@ -63,11 +64,11 @@ def agregar_diario(meteoDF: pd.DataFrame)->pd.DataFrame:
     meteoDF["data"] = meteoDF["timestamp"].dt.date #coluna data descartando a hora do 'timestamp'
 
 
-    diario = meteoDF.groupby("data").agg(  #groupby = separa o dataframe em grupos; data vira o índice do DataFrame
+    diario = meteoDF.groupby("data").agg(  #groupby = separa o dataframe em grupos; a data vira o índice do DataFrame
         temperatura = ("temperatura", "mean"),
         umidade_rel = ("umidade_relativa", "mean"),
         vento_2m = ("vento_2m", "mean"),
-        radiacao_mj = ("radiacao_wm2", lambda serie: serie.mean()*3600*24/1_000_000),
+        radiacao_mj = ("radiacao_wm2", lambda serie: serie.mean()*3600*24/1_000_000), #conversão da unidade de medida da radiacao
     ).reset_index() #transforma o data em uma coluna comum
 
     return diario

@@ -99,5 +99,51 @@ Este projeto visa desenvolver um sistema automatizado de irrigação para a Hort
     - [URGENTE] integração a dashboard
 </details>
 
+<details>
+    <summary>05/10/2026</summary>
+
+- Criação de pastas para dashboard (html/css/js)
+- Refinamento da dahsboard
+
+
+
+- Protótipo da FECIVALE:
+    - Bibliotecas
+        - Pandas (analise, limpeza, exploração e manipulação de dados)
+        - Requests (utilizado para coletar dados da API)
+        - Mathe (biblioteca para calculos matemáticos)
+        - Openpyxl (integração pyhton e excel)
+
+- Pendencias:
+    - A definir projeto final (Utilizando-se de base meteorlógica própria ou uma pronta)
+    - [EM ANDAMENTO] integração a dashboard
+</details>
   
+<details>
+    <summary>11/10/2026</summary>
+
+- Refinamento da dahsboard (agora recebe os dados do python)
+- Nova variavel adicionada a 'teste.py'
+- 'script.js' ajustado (gráfico corrigido)
+- *Dados temporais* obtidos por dia
+
+
+- Protótipo da FECIVALE:
+    - Bibliotecas
+        - Pandas (analise, limpeza, exploração e manipulação de dados)
+        - Requests (utilizado para coletar dados da API)
+        - Mathe (biblioteca para calculos matemáticos)
+        - Openpyxl (integração pyhton e excel)
+
+- Pendencias:
+    - A definir projeto final (Utilizando-se de base meteorlógica própria ou uma pronta)
+    - [Concluido] integração a dashboard
+    - [A fazer] documento explicando o código parte a parte
+    - [A fazer] migração para FASTAPI (pós fecivale)
+
+- Nota:
+    - O modelo da dashboard não é definitivo
+    - No momento não integração com servidores externos
+    - A confirmar intervalo de dias a ser apresentado no protótipo
+</details>
   

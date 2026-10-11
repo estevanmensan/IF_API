@@ -48,4 +48,3 @@ KC_POR_CULTURA = {
     "couve": 0.95
 }
 
-#calcular_et0(0,0,0,0,0,0)

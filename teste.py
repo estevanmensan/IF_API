@@ -1,14 +1,16 @@
 import requests
 import openpyxl
 import pandas as pd
+import json
 from calculo import converter_vento_2m,calcular_et0, calcular_etc, KC_POR_CULTURA
 from data import obtemDados, dictDados, agregar_diario
+
 
 def main ():
     print("Buscando os dados meteorologicos (in Open-Meteo API)")
     print("[...]\n"*3)
     #variavel para "chamar" os dados da estação
-    dados_brutos = obtemDados(past_days=2) 
+    dados_brutos = obtemDados(past_days=7) 
 
     print("Tratando a série temporal (interpolação e validação)...")
     #variavel para tratar os dados
@@ -44,18 +46,31 @@ def main ():
         for cultura, kc in KC_POR_CULTURA.items(): 
             resultado_dia[f"ETc_{cultura}_mm_dia"] = calcular_etc(et0,kc)
 
+        
         #armezando o resultado em lista
         lista_resultados.append(resultado_dia)
     df_resultado = pd.DataFrame(lista_resultados)
+    et0 = df_resultado["ET0_mm_dia"].iloc[-1]
+
     pd.set_option("display.width", 140)
     print(df_resultado.to_string(index=False))
+
+    #enviando para js
+    
 
     #arquivo .csv
     df_resultado.to_csv("resultado_et_hortif.csv", index=False)
     df_resultado.to_excel("resultado_et_hortif.xlsx", index=False)
     print("\nResultado salvo em resultado_et_hortif.csv")
     print("\nResultado salvo em resultado_et_hortif.xlsx")
-    
+
+    df_diario["data"] = df_diario["data"].astype(str)
+    dados = {
+        "historico": json.loads(df_diario.round(2).to_json(orient="records")),
+        "etc": {"et0": et0, "culturas": KC_POR_CULTURA}
+    }
+    with open("dados.json", "w", encoding="utf-8") as f:
+        json.dump(dados, f, ensure_ascii=False)
 
 if __name__ == "__main__":
     main()

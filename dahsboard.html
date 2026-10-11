@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HortIf — Dashboard de Irrigação</title>
+<link rel="stylesheet" href="style.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+</head>
+<body>
+<div class="wrap">
+    <header>
+    <div>
+      <h1>Horta<span>If</span> — Irrigação Inteligente</h1>
+      <div class="sub">IFSP-Registro · dados meteorológicos + sensores · cálculo de ET0/ETc</div>
+    </div>
+    <div class="modo">
+      <span class="dot" id="dotModo"></span>
+      <span id="textoModo">Modo autônomo</span>
+      <button class="toggle" onclick="alternarModo()">Alternar</button>
+    </div>
+  </header>
+
+  <div class="grid-cards">
+    <div class="card temp"><div class="rotulo">Temperatura</div><div class="valor" id="vTemp">--<span class="unidade">°C</span></div></div>
+    <div class="card umid"><div class="rotulo">Umidade relativa</div><div class="valor" id="vUmid">--<span class="unidade">%</span></div></div>
+    <div class="card vento"><div class="rotulo">Vento (2m)</div><div class="valor" id="vVento">--<span class="unidade">m/s</span></div></div>
+    <div class="card rad"><div class="rotulo">Radiação solar</div><div class="valor" id="vRad">--<span class="unidade">MJ/m²</span></div></div>
+  </div>
+
+  <section>
+    <h2>Variáveis micrometeorológicas</h2>
+    <canvas id="graficoClima" height="90"></canvas>
+  </section>
+
+  <section>
+    <h2>Demanda hídrica (Penman-Monteith)</h2>
+    <div class="et-row">
+      <div class="et0-box">
+        <div class="valor" id="vEt0">--</div>
+        <div class="rotulo">ET0 hoje (mm/dia)</div>
+      </div>
+      <table class="etc">
+        <tr><th>Cultura</th><th>Kc</th><th>ETc (mm/dia)</th></tr>
+        <tbody id="corpoEtc"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <h2>Histórico de leituras</h2>
+    <table class="hist">
+      <thead><tr><th>Hora</th><th>Temp (°C)</th><th>Umid (%)</th><th>Vento (m/s)</th><th>Radiação (W/m²)</th></tr></thead>
+      <tbody id="corpoHistorico"></tbody>
+    </table>
+  </section>
+
+  <footer>Protótipo de demonstração — FECIVALE 2026</footer>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
