@@ -1,13 +1,4 @@
-/* ============================================================
-   PONTO DE INTEGRAÇÃO COM A API (FastAPI)
-   Enquanto API_BASE_URL estiver null, o dashboard usa dados
-   simulados. Quando a API estiver pronta, defina a URL abaixo,
-   ex: const API_BASE_URL = "http://localhost:8000";
-   e os endpoints esperados são:
-     GET {API_BASE_URL}/leituras/historico?limite=24
-     GET {API_BASE_URL}/irrigacao/etc
-     GET {API_BASE_URL}/sistema/modo
-============================================================ */
+
 const ARQUIVO_JSON = "dados.json";
 
 async function buscarDados() {
