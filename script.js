@@ -1,6 +1,8 @@
 
 const ARQUIVO_JSON = "dados.json";
 
+const r = await fetch(ARQUIVO_JSON + "?t=" + Date.now());
+
 async function buscarDados() {
   if (ARQUIVO_JSON) {
     const r = await fetch(ARQUIVO_JSON);
