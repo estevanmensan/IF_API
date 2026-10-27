@@ -1,12 +1,16 @@
-
+/* Dashboard HortIf — lê o dados.json gerado pelo Python (dados DIÁRIOS).
+   Para voltar aos dados simulados, use: const ARQUIVO_JSON = null; */
 const ARQUIVO_JSON = "dados.json";
 
-const r = await fetch(ARQUIVO_JSON + "?t=" + Date.now());
+async function carregarJson() {
+  const r = await fetch(ARQUIVO_JSON + "?t=" + Date.now()); // ?t= evita cache antigo
+  if (!r.ok) throw new Error("Não foi possível ler " + ARQUIVO_JSON + " (HTTP " + r.status + ")");
+  return await r.json();
+}
 
 async function buscarDados() {
   if (ARQUIVO_JSON) {
-    const r = await fetch(ARQUIVO_JSON);
-    const dados = await r.json();
+    const dados = await carregarJson();
     return dados.historico;
   }
   return gerarDadosSimulados();
@@ -14,25 +18,23 @@ async function buscarDados() {
 
 async function buscarEtc() {
   if (ARQUIVO_JSON) {
-    const r = await fetch(ARQUIVO_JSON);
-    const dados = await r.json();
+    const dados = await carregarJson();
     return dados.etc;
   }
   return { et0: 4.8, culturas: { alface: 0.9, tomate: 1.05, couve: 0.95 } };
 }
 
 function gerarDadosSimulados() {
-  const agora = new Date();
   const registros = [];
-  for (let i = 23; i >= 0; i--) {
-    const hora = new Date(agora - i * 3600 * 1000);
-    const fase = (hora.getHours() - 12) / 12;
+  for (let i = 6; i >= 0; i--) {
+    const d = new Date();
+    d.setDate(d.getDate() - i);
     registros.push({
-      timestamp: hora.toISOString(),
-      temperatura: +(21 + 5 * Math.cos(fase * Math.PI / 1.3)).toFixed(1),
-      umidade_relativa: +(65 - 15 * Math.cos(fase * Math.PI / 1.3)).toFixed(0),
-      vento_2m: +(1.2 + Math.random()).toFixed(1),
-      radiacao_mj: Math.max(0, Math.round(380 * Math.cos(fase * Math.PI / 1.4))),
+      data: d.toISOString().slice(0, 10),
+      temperatura: +(20 + Math.random() * 5).toFixed(1),
+      umidade_rel: +(60 + Math.random() * 15).toFixed(1),
+      vento_2m: +(1 + Math.random()).toFixed(1),
+      radiacao_mj: +(14 + Math.random() * 6).toFixed(2),
     });
   }
   return registros;
@@ -48,7 +50,7 @@ function alternarModo() {
 let grafico;
 function montarGrafico(registros) {
   const ctx = document.getElementById('graficoClima');
-  const labels = registros.map(r => r.data.slice(5).split('-').reverse().join('/'));
+  const labels = registros.map(r => r.data.slice(5).split('-').reverse().join('/')); // "05/10"
   grafico = new Chart(ctx, {
     type: 'line',
     data: {
@@ -73,7 +75,7 @@ function montarGrafico(registros) {
 
 function preencherHistorico(registros) {
   const corpo = document.getElementById('corpoHistorico');
-  corpo.innerHTML = registros.slice(-8).reverse().map(r => `
+  corpo.innerHTML = registros.slice().reverse().map(r => `
     <tr>
       <td>${r.data.split('-').reverse().join('/')}</td>
       <td>${r.temperatura}</td>
@@ -84,7 +86,7 @@ function preencherHistorico(registros) {
 }
 
 function preencherEtc(dados) {
-  document.getElementById('vEt0').textContent = dados.et0.toFixed(1);
+  document.getElementById('vEt0').textContent = Number(dados.et0).toFixed(1);
   const corpo = document.getElementById('corpoEtc');
   corpo.innerHTML = Object.entries(dados.culturas).map(([cultura, kc]) => `
     <tr><td>${cultura}</td><td class="num">${kc}</td><td class="num">${(dados.et0 * kc).toFixed(2)}</td></tr>
@@ -92,16 +94,20 @@ function preencherEtc(dados) {
 }
 
 async function iniciar() {
-  const registros = await buscarDados();
-  const ultimo = registros[registros.length - 1];
-  document.getElementById('vTemp').innerHTML = ultimo.temperatura + '<span class="unidade">°C</span>';
-  document.getElementById('vUmid').innerHTML = ultimo.umidade_rel + '<span class="unidade">%</span>';
-  document.getElementById('vVento').innerHTML = ultimo.vento_2m + '<span class="unidade">m/s</span>';
-  document.getElementById('vRad').innerHTML = ultimo.radiacao_mj  + '<span class="unidade">MJ/m²</span>';
+  try {
+    const registros = await buscarDados();
+    const ultimo = registros[registros.length - 1];
+    document.getElementById('vTemp').innerHTML = ultimo.temperatura + '<span class="unidade">°C</span>';
+    document.getElementById('vUmid').innerHTML = ultimo.umidade_rel + '<span class="unidade">%</span>';
+    document.getElementById('vVento').innerHTML = ultimo.vento_2m + '<span class="unidade">m/s</span>';
+    document.getElementById('vRad').innerHTML = ultimo.radiacao_mj + '<span class="unidade">MJ/m²</span>';
 
-  montarGrafico(registros);
-  preencherHistorico(registros);
-  preencherEtc(await buscarEtc());
+    montarGrafico(registros);
+    preencherHistorico(registros);
+    preencherEtc(await buscarEtc());
+  } catch (erro) {
+    console.error("Erro ao montar o dashboard:", erro);
+  }
 }
 
 iniciar();
