@@ -1,5 +1,5 @@
 import requests
-from fastapi import FastAPI
+
 
 url = "https://api.open-meteo.com/v1/forecast"
 params = {
@@ -15,4 +15,4 @@ resp = requests.get(url, params=params)
 dados = resp.json()
 print(url, params)
 #print("Current:")
-print(dados["current"])
+print(dados["current"]) 
