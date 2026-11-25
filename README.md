@@ -174,3 +174,4 @@ Este projeto visa desenvolver um sistema automatizado de irrigação para a Hort
     - O modelo da dashboard não é definitivo
     - A confirmar intervalo de dias a ser apresentado no protótipo
 </details>
+

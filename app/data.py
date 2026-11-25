@@ -1,6 +1,6 @@
 import pandas as pd
 import requests
-from calculo import converter_vento_2m
+from app.calculo import converter_vento_2m
 
 def obtemDados(past_days: int=7) -> dict:
     url = "https://api.open-meteo.com/v1/forecast"
